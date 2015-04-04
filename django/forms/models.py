@@ -718,6 +718,8 @@ class BaseInlineFormSet(BaseModelFormSet):
                     if not original:
                         original = self.model.objects.get(pk=pk_value)
                     form.initial[field_name] = getattr(original, field_name)
+                    field.widget._has_changed = lambda x,y: True
+                    
 
             # Remove the primary key from the form's data, we are only
             # creating new instances
